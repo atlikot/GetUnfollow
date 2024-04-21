@@ -1,2 +1,4 @@
 # GetUnfollow
-Simple get unfollower list on Instagram with instagrapi Python
+Get unfollower list on Instagram with InstagrApi python
+
+Fill credentials in the keys.py
