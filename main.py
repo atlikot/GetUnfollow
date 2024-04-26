@@ -1,36 +1,37 @@
 from instagrapi import Client
+
+import fake
 import keys
 
-if not keys.login or not keys.password:
-    print('Please fill correct credentials in keys.py')
-    exit()
+# if not keys.login or not keys.password:
+#     print('Please fill correct credentials in keys.py')
+#     exit()
 
 cl = Client()
-cl.login(keys.login, keys.password)
+cl.username = "Fake user"
+user_id = ""
 
-print('Login to: ', cl.username)
 
-user_id = cl.user_id
+def LoginInstagram():
+    #Get followers and following dicts from instagram
+    cl.login(keys.login, keys.password)
+    print('Login to: ', cl.username)
+    user_id = cl.user_id
+    _followers = cl.user_followers(str(user_id), True, amount=0)
+    _following = cl.user_following(str(user_id), True, amount=0)
+    return _followers, _following
 
-followers = cl.user_followers(user_id, True, amount=0)
-following = cl.user_following(user_id, True, amount=0)
 
-followersCount = len(followers)
-followingCount = len(following)
+followers = fake.GetFollowers()
+following = fake.GetFollowing()
 
-print(cl.username)
-print('Followers: ', followersCount)
-print('Following: ', followingCount)
+print('UserName:', cl.username)
+print('Followers:', len(followers))
+print('Following:', len(following))
 
-followersList = []
-followingList = []
+unfollow = list(set(following) - set(followers))
+print('Unfollower list (', len(unfollow), '):')
+print(unfollow)
 
-for key in followers:
-    followersList.append(key)
-
-for key in following:
-    followingList.append(key)
-
-unfollow = list(set(followingList) - set(followersList))
-
-print(' '.join(str(cl.username_from_user_id(k)) for k in unfollow))
+for k in unfollow:
+    print(following.get(k))
