@@ -1,7 +1,7 @@
 from instagrapi import Client
-
 import fake
 import keys
+
 
 # if not keys.login or not keys.password:
 #     print('Please fill correct credentials in keys.py')
@@ -29,9 +29,14 @@ print('UserName:', cl.username)
 print('Followers:', len(followers))
 print('Following:', len(following))
 
-unfollow = list(set(following) - set(followers))
-print('Unfollower list (', len(unfollow), '):')
-print(unfollow)
+# Generate dict of unfollowers (key: UserShort class)
+unfollow = {k: v for k, v in following.items() if k not in followers}
+
+string = ''
 
 for k in unfollow:
-    print(following.get(k))
+    string += following.get(k).username + ', '
+
+string = string.rstrip(', ')
+
+print('Unfollows:', string)
