@@ -1,8 +1,11 @@
 import flet as ft
 
-def Profile(router):
-    content = ft.Column(
-        [
+
+class About(ft.Container):
+    def __init__(self):
+        super().__init__()
+        self.content = ft.Column(
+            [
                 ft.Row(
                     [
                         ft.Text("Author:", size=20),
@@ -29,8 +32,7 @@ def Profile(router):
                     [
                         ft.Text("Github: https://github.com/atlikot")
                     ]
-                )
-        ]
-    )
+                ),
+            ]
 
-    return content
+        )

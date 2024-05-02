@@ -1,27 +1,23 @@
 import flet as ft
-from views.routes import router
-from views.app_bar import NavBar
+from views.routes import *
+from views.app_bar import navBar
 from core.style import *
 
-def main(page: ft.Page):
 
+def main(page: ft.Page):
+    routes = Routes(page)
     page.theme_mode = "dark"
     page.window_center()
     page.window_width = windows_width
     page.window_height = windows_height
     page.window_resizable = False
     page.window_maximizable = False
-    page.appbar = NavBar(page)
-    page.on_route_change = router.route_change
-    router.page = page
-    page.add(
-        router.body
-    )
+    page.appbar = navBar(page)
+    page.on_route_change = routes.on_route_change
     page.go('/')
 
+
 ft.app(target=main, assets_dir="assets")
-
-
 
 # if not keys.login or not keys.password:
 #     print('Please fill correct credentials in keys.py')

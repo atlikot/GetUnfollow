@@ -1,22 +1,10 @@
 from core.style import *
+from flet import *
 
-def Dashboard(router):
-    content = Column(
-        [
-            Container(
-                Container(
-                    Stack(
-                        [
 
-                        ]),
-                    padding=50,
-                    width=form_width,
-                    height=form_height,
-                ),
-                width=windows_width,
-                height=windows_height,
-                gradient=form_gradient,
-            )
-        ]
-    )
-    return content
+class Dashboard(Container):
+    def __init__(self):
+        super().__init__()
+        self.content = Container(
+            Text(value='Панель управления')
+        )
