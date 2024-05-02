@@ -2,7 +2,7 @@ import flet as ft
 
 
 class About(ft.Container):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
         super().__init__()
         self.content = ft.Column(
             [

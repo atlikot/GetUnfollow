@@ -15,8 +15,11 @@ board_height = 585
 form_radius = 11
 form_bgcolor = '#22ffffff'
 form_border = ft.border.all(2,'#1e1c20')
+form_border_light = ft.border.all(2,'#ffffff')
+form_rotate = 0.98 * 3.14
 form_margin = ft.margin.all(50)
 form_gradient = ft.LinearGradient(['#111199', '#00ddcc'])
+form_gradient_light = ft.LinearGradient(['#ffffff', '#00ddcc'])
 logo_size = 100
 center = ft.MainAxisAlignment.CENTER
 

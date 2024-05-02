@@ -21,5 +21,5 @@ class Routes:
 
     def on_route_change(self, route):
         print('Route: ', self.page.route)
-        self.body.content = self.routes[self.page.route]()
+        self.body.content = self.routes[self.page.route](self.page)
         self.page.update()

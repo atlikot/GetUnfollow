@@ -1,73 +1,12 @@
-#         self.image_active = Image(src='assets/bg_windows_active.png')
-#         self.image_noactive = Image(src='assets/bg_windows.png',
-#                                     animate_opacity=300,
-#                                     opacity=1)
-
-#         def animate_eyes(e):
-#             if self.image_noactive.opacity == 1:
-#                 self.image_noactive.opacity = 0
-#                 self.image_noactive.update()
-#
-#
-#
-#         self.login_button = ElevatedButton(
-#             text=dic_login_button,
-#             width=button_width,
-#             height=button_height,
-#             style=ButtonStyle(
-#                 bgcolor=button_bgcolor,
-#                 color=button_font_color,
-#                 side=button_border,
-#                 overlay_color=button_overlay,
-#             ),
-#             on_click=lambda e: login_auth(e)
-#
-##
-#         #Контент
-#         self.content = Container(
-#             Stack([
-#                 self.login_error,
-#                 self.image_active,
-#                 self.image_noactive,
-#                 Container(
-#                     Text(
-#                         value=dic_login_name,
-#                         size=18,
-#                         color=login_title_color
-#                     ),
-#                     margin=login_title_margin
-#                 ),
-#                 Container(
-#                     Container(
-#                         Column([
-#                             self.login_username,
-#                             self.login_password,
-#                             Row([self.login_button], alignment=button_align)],
-#                             spacing=20),
-#                         padding=20,
-#                         width=form_width,
-#                         height=form_height,
-#                         bgcolor=form_bgcolor,
-#                         border_radius=10,
-#                         border=form_border,
-#                         margin=form_margin
-#                     ),
-#                     alignment=alignment.center
-#                 )
-#             ])
-#         )
-
 from core.style import *
+from controls.toggle_image import ToggleImage
+from controls.toggle_border import ToggleBorder
+from core.client import *
 
 
 class Login(ft.Container):
-    def __init__(self):
+    def __init__(self, page: ft.Page):
         super().__init__()
-
-        self.image_white = ft.Image(src='assets/ratw.png')
-        self.image_black = ft.Image(src='assets/rat.png',
-                                    animate_opacity=300,
-                                    opacity=0)
 
         def login_auth(e):
             login = self.login.value
@@ -76,11 +15,25 @@ class Login(ft.Container):
             print(login)
             print(password)
 
-            if (login == 'Login' and password == 'test'):
+            if login == 'test' and password == 'test':
+                print('Login success. Username: Test user')
+                cl.username = 'fake'
                 self.page.go(
                     '/dashboard'
                 )
-            else:
+                return
+            elif not login or not password:
+                self.login_error.open = True
+                self.login_error.update()
+                return
+
+            try:
+                cl.login(login, password)
+                print('Login success. Username:', cl.username)
+                self.page.go(
+                    '/dashboard'
+                )
+            except:
                 self.login_error.open = True
                 self.login_error.update()
 
@@ -115,31 +68,19 @@ class Login(ft.Container):
                 # color='white',
                 weight='w500',
             ), width=200,
-        ),
+            on_click=lambda e: login_auth(e)
+        )
 
         self.content = ft.Container(
             ft.Stack(
                 [
-                    ft.Container(
-                        border_radius=form_radius,
-                        rotate=ft.Rotate(0.98 * 3.14),  # degree
-                        width=form_width,
-                        height=form_height,
-                        margin=form_margin,
-                        border=form_border,
-                    ),
+                    ToggleBorder(page),
                     ft.Container(
                         ft.Column([
                             ft.Row(
                                 [
                                     ft.Container(
-                                        ft.Stack(
-                                            [
-                                                self.image_white,
-                                                self.image_black
-                                            ]
-                                        )
-                                        , height=logo_size)
+                                        ToggleImage(page), height=logo_size)
                                 ], alignment=center
                             ),
                             ft.Text(
@@ -162,13 +103,7 @@ class Login(ft.Container):
                                 text_align='center',
                             ),
                             ft.Row(
-                                [ft.ElevatedButton(
-                                    content=ft.Text(
-                                        'SIGN IN',
-                                        # color='white',
-                                        weight='w500',
-                                    ), width=200,
-                                )],alignment=center
+                                [self.login_button], alignment=center
                             ),
                             self.login_error,
 
@@ -176,7 +111,6 @@ class Login(ft.Container):
                         ), border_radius=form_radius,
                         width=form_width,
                         height=form_height,
-                        border=form_border,
                         margin=form_margin,
                         padding=ft.padding.all(50)
                     )
