@@ -3,10 +3,8 @@ import flet as ft
 
 def toggle_dark_mode(e):
     page = e.page
-    print('Before:', page.theme_mode)
     page.theme_mode = ft.ThemeMode.LIGHT if page.theme_mode == ft.ThemeMode.DARK else ft.ThemeMode.DARK
-    print('After:', page.theme_mode)
-    page.appbar = navBar(page)
+    page.appbar = nav_bar(page)
     page.update()
 
 
@@ -15,7 +13,7 @@ def exit_app(e):
     page.window_destroy()
 
 
-def navBar(page):
+def nav_bar(page):
     navbar = ft.AppBar(
         leading_width=5,
         title=ft.Text("Get Unfollow"),

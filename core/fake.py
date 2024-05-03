@@ -2,7 +2,7 @@ from instagrapi.types import UserShort
 from pydantic_core import Url
 
 
-def GetFollowing():
+def get_following():
     # Use fake followers and following dicts
     _following = {'369174195': UserShort(pk='369174195', username='creativityasia', full_name='CreativityAsia',
                                          profile_pic_url=Url(
@@ -48,7 +48,7 @@ def GetFollowing():
     return _following
 
 
-def GetFollowers():
+def get_followers():
     _followers = {'7187074786': UserShort(pk='7187074786', username='indikator_space', full_name='Indikator',
                                           profile_pic_url=Url(
                                               'https://scontent-waw2-2.cdninstagram.com/v/t51.2885-19/62655654_197385984515165_6211206576183705600_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-waw2-2.cdninstagram.com&_nc_cat=105&_nc_ohc=uduLa-WN8p8Ab77ro6z&edm=AOG-cTkBAAAA&ccb=7-5&oh=00_AfDUZUK8dQ1n8u08tzei2cZpaSocoU3GPoxsiPrbYxJwpA&oe=66300E06&_nc_sid=17ea04'),

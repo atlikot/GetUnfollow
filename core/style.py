@@ -37,4 +37,4 @@ button_align = ft.MainAxisAlignment.CENTER
 button_overlay = '#4077bb'
 
 #alert
-alert_error_bg = '#1e1c20'
+snack_bg = '#1e1c20'

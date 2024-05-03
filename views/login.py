@@ -4,9 +4,30 @@ from controls.toggle_border import ToggleBorder
 from core.client import *
 
 
+
 class Login(ft.Container):
     def __init__(self, page: ft.Page):
         super().__init__()
+
+        # def snack_bar(status):
+        #     if status == 'error':
+        #         snack_message = 'Incorrect login or password'
+        #         snack_color = '#ff0000'
+        #     elif status == 'success':
+        #         snack_message = 'Incorrect login or password'
+        #         snack_color = '00ff00'
+        #     else:
+        #         snack_message = ''
+        #         snack_color = 'ff0000'
+        #
+        #     bar = ft.SnackBar(ft.Text(snack_message, color=snack_color),
+        #                       bgcolor='#1e1c20')
+        #
+        #     bar.open = True
+        #     bar.update()
+        #
+        #     return bar
+
 
         def login_auth(e):
             login = self.login.value
@@ -16,30 +37,30 @@ class Login(ft.Container):
             print(password)
 
             if login == 'test' and password == 'test':
-                print('Login success. Username: Test user')
+                self.snack_bar.open = True
+                self.snack_bar.update()
                 cl.username = 'fake'
                 self.page.go(
                     '/dashboard'
                 )
                 return
             elif not login or not password:
-                self.login_error.open = True
-                self.login_error.update()
                 return
 
             try:
                 cl.login(login, password)
-                print('Login success. Username:', cl.username)
+                self.snack_bar.open = True
+                self.snack_bar.update()
                 self.page.go(
                     '/dashboard'
                 )
             except:
-                self.login_error.open = True
-                self.login_error.update()
+                self.snack_bar.open = True
+                self.snack_bar.update()
 
-        self.login_error = ft.SnackBar(
+        self.snack_bar = ft.SnackBar(
             ft.Text(f"Неверный логин или пароль", color='#ff0000'),
-            bgcolor=alert_error_bg
+            bgcolor=snack_bg
         )
 
         self.login = ft.TextField(
@@ -105,7 +126,7 @@ class Login(ft.Container):
                             ft.Row(
                                 [self.login_button], alignment=center
                             ),
-                            self.login_error,
+                            self.snack_bar,
 
                         ]
                         ), border_radius=form_radius,
