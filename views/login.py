@@ -1,8 +1,8 @@
 from core.style import *
 from controls.toggle_image import ToggleImage
 from controls.toggle_border import ToggleBorder
+from controls.toggle_bg import ToggleBackground
 from core.client import *
-
 
 
 class Login(ft.Container):
@@ -27,7 +27,6 @@ class Login(ft.Container):
         #     bar.update()
         #
         #     return bar
-
 
         def login_auth(e):
             login = self.login.value
@@ -92,9 +91,9 @@ class Login(ft.Container):
             on_click=lambda e: login_auth(e)
         )
 
-        self.content = ft.Container(
-            ft.Stack(
+        self.content = ft.Stack(
                 [
+                    ToggleBackground(page),
                     ToggleBorder(page),
                     ft.Container(
                         ft.Column([
@@ -136,8 +135,4 @@ class Login(ft.Container):
                         padding=ft.padding.all(50)
                     )
                 ]
-            ),
-            width=windows_width,
-            height=board_height,
-            gradient=form_gradient
-        )
+            )

@@ -7,7 +7,8 @@ class ToggleImage(ft.Container):
         self.page = page
         self.image_white = ft.Image(src='assets/ratw.png',
                                     opacity=0,
-                                    animate_opacity=300)
+                                    animate_opacity=300,
+                                    )
         self.image_black = ft.Image(src='assets/rat.png',
                                     animate_opacity=300,
                                     opacity=1)
