@@ -15,7 +15,7 @@ def exit_app(e):
 
 def nav_bar(page):
     navbar = ft.AppBar(
-        leading_width=5,
+        leading_width=20,
         title=ft.Text("Get Unfollow"),
         center_title=False,
         actions=[

@@ -1,3 +1,7 @@
+from typing import Optional
+
+from flet_core.gradients import Gradient
+
 from core.style import *
 
 
@@ -13,9 +17,12 @@ class ToggleBackground(ft.Container):
         return ft.Container(
             width=windows_width,
             height=board_height,
-            gradient=form_gradient
+            gradient=login_gradient
         )
 
     def before_update(self):
         super().before_update()
-        self.board.gradient = form_gradient if self.page.theme_mode == ft.ThemeMode.DARK else form_gradient_light
+        if self.page.route == '/dashboard':
+            self.board.gradient = dashboard_gradient if self.page.theme_mode == ft.ThemeMode.DARK else dashboard_gradient_light
+        else:
+            self.board.gradient = login_gradient if self.page.theme_mode == ft.ThemeMode.DARK else login_gradient_light

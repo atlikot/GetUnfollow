@@ -18,8 +18,10 @@ form_border = ft.border.all(2,'#1e1c20')
 form_border_light = ft.border.all(2,'#ffffff')
 form_rotate = 0.98 * 3.14
 form_margin = ft.margin.all(50)
-form_gradient = ft.LinearGradient(['#111199', '#00ddcc'])
-form_gradient_light = ft.LinearGradient(['#ffffff', '#00ddcc'])
+login_gradient = ft.LinearGradient(['#111199', '#00ddcc'])
+dashboard_gradient = ft.LinearGradient(['#00ddcc', '#111199'])
+login_gradient_light = ft.LinearGradient(['#ffffff', '#00ddcc'])
+dashboard_gradient_light = ft.LinearGradient(['#00ddcc', '#ffffff'])
 logo_size = 100
 center = ft.MainAxisAlignment.CENTER
 
