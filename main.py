@@ -1,10 +1,10 @@
-from views.routes import *
+from views.root import *
 from controls.app_bar import nav_bar
 from core.style import *
 
 
 def main(page: ft.Page):
-    routes = Routes(page)
+    root = Root(page)
     page.theme_mode = ft.ThemeMode.DARK
     page.window_center()
     page.window_width = windows_width
@@ -12,7 +12,7 @@ def main(page: ft.Page):
     page.window_resizable = False
     page.window_maximizable = False
     page.appbar = nav_bar(page)
-    page.on_route_change = routes.on_route_change
+    page.on_route_change = root.on_route_change
     page.go('/')
 
 
